@@ -1,12 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/cmplx"
+)
 
-var c, python, java bool
+var c, python, java, goLang = false, false, false, true
 
 func main() {
-	oneString := "texto1"
-	anotherString := "texto2"
+	const CelsiusTemp = 13
+
+	var (
+		oneString                             = "texto1"
+		anotherString                         = "texto2"
+		squareRoot                 complex128 = cmplx.Sqrt(-5 + 12i)
+		fahrenheitTemp, kelvinTemp float64
+	)
 
 	fmt.Println("Textos originais: ", oneString, anotherString)
 
@@ -14,13 +23,15 @@ func main() {
 
 	fmt.Println("Textos trocados: ", oneString, anotherString)
 
-	var fahrenheitTemp, kelvinTemp float64
+	fmt.Println("Tipo complexo (raiz quadrada):", squareRoot)
 
-	fahrenheitTemp, kelvinTemp = getFahrenheitAndKelvinByCelsius(13)
+	fahrenheitTemp, kelvinTemp = getFahrenheitAndKelvinByCelsius(CelsiusTemp)
 
-	fmt.Println("Temperatura (13 C°) para Fahrenheit e Kelvin:", fahrenheitTemp, kelvinTemp)
+	formatTemp := fmt.Sprintf("Temperatura (%d C°) para Fahrenheit e Kelvin: %.2f %.2f", CelsiusTemp, fahrenheitTemp, kelvinTemp)
 
-	fmt.Println("Essa linguagem é c, python ou java? ", c, python, java)
+	fmt.Println(formatTemp)
+
+	fmt.Println("Essa linguagem é c, python, java ou go? ", c, python, java, goLang)
 }
 
 func swapStrings(firstString, secondString string) (string, string) {
